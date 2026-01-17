@@ -535,8 +535,11 @@ const Dashboard = () => {
         <CardHeader>
           <div className="flex items-center justify-between">
             <CardTitle title="Transactions"></CardTitle>
-            <Button variant="ghost" size="sm">
-              ...
+            <Button variant="ghost" size="sm" className="border cursor-pointer">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M5 10H15M2.5 5H17.5M7.5 15H12.5" stroke="#2C2F33" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+              Filters
             </Button>
           </div>
         </CardHeader>
@@ -545,22 +548,22 @@ const Dashboard = () => {
             <table className="w-full text-sm">
               <thead className="border-b">
                 <tr>
-                  <th className="text-left py-3 px-4 font-medium text-muted-foreground">
+                  <th className="text-left text-sm sm:text-base   py-3 px-4 font-medium text-[#6B7280] ">
                     TRX ID
                   </th>
-                  <th className="text-left py-3 px-4 font-medium text-muted-foreground">
+                  <th className="text-left text-sm sm:text-base   py-3 px-4 font-medium text-[#6B7280] ">
                     Name
                   </th>
-                  <th className="text-left py-3 px-4 font-medium text-muted-foreground">
+                  <th className="text-left text-sm sm:text-base   py-3 px-4 font-medium text-[#6B7280] ">
                     Amount
                   </th>
-                  <th className="text-left py-3 px-4 font-medium text-muted-foreground">
+                  <th className="text-left text-sm sm:text-base   py-3 px-4 font-medium text-[#6B7280] ">
                     Method
                   </th>
-                  <th className="text-left py-3 px-4 font-medium text-muted-foreground">
+                  <th className="text-left text-sm sm:text-base   py-3 px-4 font-medium text-[#6B7280] ">
                     Category
                   </th>
-                  <th className="text-left py-3 px-4 font-medium text-muted-foreground">
+                  <th className="text-left text-sm sm:text-base   py-3 px-4 font-medium text-[#6B7280] ">
                     Status
                   </th>
                 </tr>
@@ -568,10 +571,10 @@ const Dashboard = () => {
               <tbody>
                 {transactions.map((txn, index) => (
                   <tr key={index} className="border-b hover:bg-gray-50">
-                    <td className="py-3 px-4 text-muted-foreground">
+                    <td className="py-3 px-4 text-muted-foreground text-sm  font-normal ">
                       {txn.id}
                     </td>
-                    <td className="py-3 px-4">{txn.name}</td>
+                    <td className="py-3 px-4 text-sm text-[#2C2F33] font-normal">{txn.name}</td>
                     <td
                       className={`py-3 px-4 font-medium ${
                         txn.amount.startsWith("-")
@@ -581,15 +584,15 @@ const Dashboard = () => {
                     >
                       {txn.amount}
                     </td>
-                    <td className="py-3 px-4 text-muted-foreground">
+                    <td className="py-3 px-4 text-muted-foreground text-sm  font-normal">
                       {txn.method}
                     </td>
-                    <td className="py-3 px-4 text-muted-foreground">
+                    <td className="py-3 px-4 text-muted-foreground text-sm font-normal">
                       {txn.category}
                     </td>
                     <td className="py-3 px-4">
                       <span
-                        className={`text-xs px-2 py-1 rounded-full ${
+                        className={`text-xs  py-2 w-24 flex items-center justify-center rounded-full ${
                           txn.status === "Completed"
                             ? "bg-green-100 text-green-700"
                             : txn.status === "Pending"
