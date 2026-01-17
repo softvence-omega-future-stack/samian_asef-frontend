@@ -2,20 +2,31 @@ import * as React from "react"
 
 import { cn } from "@/lib/utils"
 
-function Card({ className, ...props }: React.ComponentProps<"div">) {
+interface CardProps extends React.ComponentProps<"div"> {
+  bgColor?: string;
+  textColor?: string;
+}
+interface CardContentProps extends React.HTMLAttributes<HTMLDivElement> {
+  buttonText?: string; 
+}
+interface CardTitleProps extends React.HTMLAttributes<HTMLDivElement> {
+  title: string;
+  icon?: React.ReactNode;
+}
+
+function Card({ className, bgColor, textColor, ...props }: CardProps) {
   return (
-    <div
+   
+<div
       data-slot="card"
-      className={cn(
-        "bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm",
-        className
-      )}
+      className={cn("flex flex-col gap-6 rounded-xl border py-6 shadow-sm", className)}
+      style={{ backgroundColor: bgColor, color: textColor }} 
       {...props}
     />
   )
 }
 
-function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
+function CardHeader({ className,  ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="card-header"
@@ -28,13 +39,16 @@ function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function CardTitle({ className, ...props }: React.ComponentProps<"div">) {
+function CardTitle({ title, icon, className, ...props }: CardTitleProps) {
   return (
     <div
       data-slot="card-title"
-      className={cn("leading-none font-semibold", className)}
+      className={cn("leading-none font-semibold flex items-center justify-between ", className)}
       {...props}
-    />
+    >
+      {title}
+         {icon && <div className="bg-[#F7F4FF]  h-12 w-12 rounded-[12px] flex items-center justify-center">{icon}</div>}
+    </div>
   )
 }
 
@@ -44,6 +58,7 @@ function CardDescription({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="card-description"
       className={cn("text-muted-foreground text-sm", className)}
       {...props}
+      
     />
   )
 }
@@ -61,13 +76,24 @@ function CardAction({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function CardContent({ className, ...props }: React.ComponentProps<"div">) {
+function CardContent({ className, buttonText, children, ...props }: CardContentProps) {
   return (
     <div
       data-slot="card-content"
-      className={cn("px-6", className)}
+      className={cn(
+        "px-6 text-base sm:text-lg md:text-xl text-muted-foreground font-bold leading-7",
+        className
+      )}
       {...props}
-    />
+    >
+      {children}
+
+      {buttonText && (
+        <span className="text-xs sm:text-sm text-muted-foreground border border-[#171C351A] px-2.5 py-1 rounded-[50px] font-normal leading-5 mt-1 inline-block">
+          {buttonText}
+        </span>
+      )}
+    </div>
   )
 }
 
