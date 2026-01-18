@@ -10,7 +10,8 @@ import TipManagement from "@/pages/TripManagement";
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import Home from "../pages/Home";
-import RiderDetails from "@/components/Riders/RiderDetails";
+// import RiderDetails from "@/components/Riders/RiderDetails";
+import RiderProfile from "@/components/Riders/Riderprofile";
 
 const routes = createBrowserRouter([
   {
@@ -27,7 +28,7 @@ const routes = createBrowserRouter([
         children: [
           { index: true, element: <Dashboard /> },
        { path: "riders", element: <Riders /> },
-{ path: "riders/profile/:id", element: <RiderDetails /> },
+{ path: "riders/profile/:id", element: <RiderProfile /> },
  
 
           { path: "driver-management", element: <DriverManagement /> },

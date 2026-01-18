@@ -79,40 +79,43 @@ const riders = [
 
 
   return (
-    <div className="p-8 space-y-6">
+    <div className=" p-2 md:p-4 lg:p-8 space-y-6">
       <div className="space-y-2">
         
       </div>
 
       <Card>
         <CardHeader>
-          <div className="flex items-center justify-between">
-            {/* <CardTitle title="Riders List"></CardTitle> */}
-            <h1 className="text-xl md:text-2xl leading-6 font-semibold"> Riders List </h1> 
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2 border px-4 py-2 rounded-lg">
-                <Search className="w-4 h-4 text-muted-foreground" />
-                <input
-                  type="text"
-                  placeholder="Search..."
-                  className="bg-transparent outline-none text-sm"
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                />
-              </div>
-              <Button
-                variant="outline"
-                size="sm"
-                className="gap-2 bg-transparent hover:bg-gray-100 cursor-pointer py-2 px-4"
-                
-              >
-                <svg width="17" height="12" viewBox="0 0 17 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M3.33301 5.8335H13.333M0.833008 0.833496H15.833M5.83301 10.8335H10.833" stroke="#2C2F33" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-                Filters
-              </Button>
-            </div>
-          </div>
+         <div className="flex flex-col md:flex-row w-full gap-2 items-center md:justify-between">
+  <h1 className="text-xl md:text-2xl leading-6 font-semibold">Riders List</h1>
+
+  <div className="flex flex-col md:flex-row gap-4 w-full md:w-auto items-center">
+    {/* Search box */}
+    <div className="flex w-full md:w-64 items-center gap-2 border px-4 py-2 rounded-lg">
+      <Search className="w-4 h-4 text-muted-foreground" />
+      <input
+        type="text"
+        placeholder="Search..."
+        className="bg-transparent outline-none text-sm w-full"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+    </div>
+
+    {/* Filter button */}
+    <Button
+      variant="outline"
+      size="sm"
+      className="gap-2 w-full md:w-auto bg-transparent hover:bg-gray-100 cursor-pointer py-2 px-4 flex justify-center"
+    >
+      <svg width="17" height="12" viewBox="0 0 17 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3.33301 5.8335H13.333M0.833008 0.833496H15.833M5.83301 10.8335H10.833" stroke="#2C2F33" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+      Filters
+    </Button>
+  </div>
+</div>
+
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
@@ -199,7 +202,7 @@ const riders = [
               </tbody>
             </table>
           </div>
-          <div className="flex items-center justify-between mt-6 text-sm">
+          <div className="flex flex-col md:flex-row gap-2 items-center justify-between mt-6 text-sm">
             <span className="text-[#6B7280] text-sm font-normal ">
               Showing 1-8 of {riders.length} entries
             </span>

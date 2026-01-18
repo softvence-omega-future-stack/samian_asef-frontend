@@ -34,11 +34,11 @@
 body {
   font-family: "SF Pro Display", system-ui, sans-serif;
 }
-/* @theme {
+@theme {
   --color-titleColor: #2C2F33;
   --color-textColor: #6B7280;
   --color-primaryColor: #008080;
-} */
+}
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);

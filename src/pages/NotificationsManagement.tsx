@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
-import { useState } from "react";
+// import { useState } from "react";
 
 interface Notification {
   id: string;
@@ -69,7 +69,7 @@ const NOTIFICATIONS_DATA: Notification[] = [
 ];
 
 const NotificationsManagement = () => {
-  const [isAdding, setIsAdding] = useState(false);
+  // const [isAdding, setIsAdding] = useState(false);
 
   return (
     <div className="flex-1 overflow-auto bg-background">
