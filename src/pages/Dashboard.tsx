@@ -160,7 +160,7 @@ const transactions = [
 
 const Dashboard = () => {
   return (
-    <div className="p-8 space-y-6">
+    <div className="space-y-6">
   
 
       {/* Stats Cards */}
@@ -358,10 +358,9 @@ const Dashboard = () => {
             </div>
           </CardHeader>
 
-       <CardContent className="flex items-end h-[400px]">
-  
+   <CardContent className="flex flex-col md:flex-row items-start md:items-end h-[400px] gap-6">
   {/* Left side: Description */}
-  <div className="w-1/4">
+  <div className="w-full md:w-1/4">
     <h2 className="text-titleColor text-lg sm:text-xl md:text-2xl font-semibold leading-6">
       $1224
     </h2>
@@ -370,59 +369,46 @@ const Dashboard = () => {
     </p>
   </div>
 
-  
-  <div className="w-3/4 h-full">
-<ResponsiveContainer width="100%" height={400}>
-  <BarChart data={ordersData} barCategoryGap="20%">
-    
-    {/* ✅ Gradient */}
-    <defs>
-      <linearGradient id="ordersGradient" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stopColor="#008080" stopOpacity={0.25} />
-        <stop offset="100%" stopColor="#008080" stopOpacity={1} />
-      </linearGradient>
-    </defs>
+  {/* Right side: Chart */}
+  <div className="w-full md:w-3/4 h-64 md:h-full">
+    <ResponsiveContainer width="100%" height="100%">
+      <BarChart data={ordersData} barCategoryGap="20%">
+        <defs>
+          <linearGradient id="ordersGradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#008080" stopOpacity={0.25} />
+            <stop offset="100%" stopColor="#008080" stopOpacity={1} />
+          </linearGradient>
+        </defs>
 
-    <CartesianGrid vertical={false} stroke="#E5ECF6" />
-
-    <XAxis
-      dataKey="day"
-      axisLine={false}
-      tickLine={false}
-      tick={{ fill: "#6B7280", fontSize: 12 }}
-    />
-
-    <YAxis
-      domain={[0, 100]}
-      ticks={[20, 40, 60, 80, 100]}
-      tickFormatter={(v) => `${v}%`}
-      axisLine={false}
-      tickLine={false}
-      tick={{ fill: "#6B7280", fontSize: 12 }}
-    />
-
-    <Tooltip formatter={(v) => `${v}%`} />
-
-    <Bar
-      dataKey="orders"
-      fill="url(#ordersGradient)"
-      radius={[6, 6, 0, 0]}
-      maxBarSize={32}
-    />
-  </BarChart>
-</ResponsiveContainer>
-
-
+        <CartesianGrid vertical={false} stroke="#E5ECF6" />
+        <XAxis
+          dataKey="day"
+          axisLine={false}
+          tickLine={false}
+          tick={{ fill: "#6B7280", fontSize: 12 }}
+        />
+        <YAxis
+          domain={[0, 100]}
+          ticks={[20, 40, 60, 80, 100]}
+          tickFormatter={(v) => `${v}%`}
+          axisLine={false}
+          tickLine={false}
+          tick={{ fill: "#6B7280", fontSize: 12 }}
+        />
+        <Tooltip formatter={(v) => `${v}%`} />
+        <Bar dataKey="orders" fill="url(#ordersGradient)" radius={[6, 6, 0, 0]} maxBarSize={32} />
+      </BarChart>
+    </ResponsiveContainer>
   </div>
-
 </CardContent>
+
 
 
         </Card>
       </div>
 
       {/* Three Column Section */}
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-1  md:grid-cols-2 xl:grid-cols-3 gap-6">
         {/* Top Driver */}
         <Card>
           <CardHeader>
@@ -497,7 +483,7 @@ const Dashboard = () => {
           </CardHeader>
           <CardContent className="space-y-3">
             {liveDriving.map((driver, index) => (
-              <div key={index} className="p-3 flex items-center justify-between w-full bg-gray-50 rounded-lg">
+              <div key={index} className="p-3 flex flex-col sm:flex-row md:flex-col lg:flex-row gap-3 items-center justify-between w-full bg-gray-50 rounded-lg">
                <div className= " flex items-center gap-2 shrink-0 w-[150px]">
                 <Avatar>
                   <AvatarImage src={driver.img} />
@@ -535,8 +521,11 @@ const Dashboard = () => {
         <CardHeader>
           <div className="flex items-center justify-between">
             <CardTitle title="Transactions"></CardTitle>
-            <Button variant="ghost" size="sm">
-              ...
+            <Button variant="ghost" size="sm" className="border cursor-pointer">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M5 10H15M2.5 5H17.5M7.5 15H12.5" stroke="#2C2F33" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+              Filters
             </Button>
           </div>
         </CardHeader>
@@ -545,22 +534,22 @@ const Dashboard = () => {
             <table className="w-full text-sm">
               <thead className="border-b">
                 <tr>
-                  <th className="text-left py-3 px-4 font-medium text-muted-foreground">
+                  <th className="text-left text-sm sm:text-base   py-3 px-4 font-medium text-[#6B7280] ">
                     TRX ID
                   </th>
-                  <th className="text-left py-3 px-4 font-medium text-muted-foreground">
+                  <th className="text-left text-sm sm:text-base   py-3 px-4 font-medium text-[#6B7280] ">
                     Name
                   </th>
-                  <th className="text-left py-3 px-4 font-medium text-muted-foreground">
+                  <th className="text-left text-sm sm:text-base   py-3 px-4 font-medium text-[#6B7280] ">
                     Amount
                   </th>
-                  <th className="text-left py-3 px-4 font-medium text-muted-foreground">
+                  <th className="text-left text-sm sm:text-base   py-3 px-4 font-medium text-[#6B7280] ">
                     Method
                   </th>
-                  <th className="text-left py-3 px-4 font-medium text-muted-foreground">
+                  <th className="text-left text-sm sm:text-base   py-3 px-4 font-medium text-[#6B7280] ">
                     Category
                   </th>
-                  <th className="text-left py-3 px-4 font-medium text-muted-foreground">
+                  <th className="text-left text-sm sm:text-base   py-3 px-4 font-medium text-[#6B7280] ">
                     Status
                   </th>
                 </tr>
@@ -568,10 +557,10 @@ const Dashboard = () => {
               <tbody>
                 {transactions.map((txn, index) => (
                   <tr key={index} className="border-b hover:bg-gray-50">
-                    <td className="py-3 px-4 text-muted-foreground">
+                    <td className="py-3 px-4 text-muted-foreground text-sm  font-normal ">
                       {txn.id}
                     </td>
-                    <td className="py-3 px-4">{txn.name}</td>
+                    <td className="py-3 px-4 text-sm text-[#2C2F33] font-normal">{txn.name}</td>
                     <td
                       className={`py-3 px-4 font-medium ${
                         txn.amount.startsWith("-")
@@ -581,15 +570,15 @@ const Dashboard = () => {
                     >
                       {txn.amount}
                     </td>
-                    <td className="py-3 px-4 text-muted-foreground">
+                    <td className="py-3 px-4 text-muted-foreground text-sm  font-normal">
                       {txn.method}
                     </td>
-                    <td className="py-3 px-4 text-muted-foreground">
+                    <td className="py-3 px-4 text-muted-foreground text-sm font-normal">
                       {txn.category}
                     </td>
                     <td className="py-3 px-4">
                       <span
-                        className={`text-xs px-2 py-1 rounded-full ${
+                        className={`text-xs  py-2 w-24 flex items-center justify-center rounded-full ${
                           txn.status === "Completed"
                             ? "bg-green-100 text-green-700"
                             : txn.status === "Pending"

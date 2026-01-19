@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { MapPin, PencilIcon } from "lucide-react";
 import { useState } from "react";
+import profileImg from "@/assets/images/adminImg.png";
 
 const AdminProfile = () => {
   const [isEditing, setIsEditing] = useState(false);
@@ -25,26 +26,28 @@ const AdminProfile = () => {
   };
 
   return (
-    <div className="flex-1 overflow-auto bg-background">
-      <div className="p-8">
-        <h1 className="text-2xl font-bold text-foreground mb-8">
+    <div className="flex-1 overflow-auto bg-background rounded-2xl">
+      <div className="p-3 md:p-6">
+        <h1 className="text-xl md:text-2xl font-semibold text-titleColor leading-6 mb-8">
           Admin profile
         </h1>
 
-        <div className="bg-card rounded-lg border border-border p-8 max-w-2xl">
-          <div className="flex items-end gap-6 mb-8">
-            <div className="w-32 h-32 bg-gradient-to-br from-amber-200 to-amber-100 rounded-full flex items-center justify-center flex-shrink-0">
-              <span className="text-4xl">👨‍💼</span>
+        <div className="bg-card rounded-lg  md:p-6 ">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-8">
+          <div className="flex items-center gap-3">
+              <div className=" flex items-center justify-center flex-shrink-0">
+              <img src={profileImg} alt="" />
             </div>
             <div className="flex-1">
-              <h2 className="text-3xl font-bold text-teal-600 mb-1">
+              <h2 className="text-xl md:text-2xl font-semibold leading-6 text-primaryColor mb-2.5">
                 Keren nix
               </h2>
-              <p className="text-muted-foreground">Anaesthesia</p>
+              <p className="text-titleColor text-sm  font-normal leading-6">Anaesthesia</p>
             </div>
+          </div>
             <Button
               variant="outline"
-              className="gap-2 bg-transparent"
+              className="gap-2 bg-transparent text-titleColor hover:bg-muted cursor-pointer w-full md:w-auto"
               onClick={() => setIsEditing(!isEditing)}
             >
               <PencilIcon className="w-4 h-4" />
@@ -53,9 +56,9 @@ const AdminProfile = () => {
           </div>
 
           <div className="space-y-6">
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-semibold text-foreground mb-2">
+                <label className="block text-sm font-normal text-titleColor leading-4 mb-2">
                   First name
                 </label>
                 <Input
@@ -64,11 +67,11 @@ const AdminProfile = () => {
                     handleInputChange("firstName", e.target.value)
                   }
                   disabled={!isEditing}
-                  className="bg-muted/50"
+                  className="bg-muted/50 text-textColor font-normal text-sm leading-4 uppercase"
                 />
               </div>
               <div>
-                <label className="block text-sm font-semibold text-foreground mb-2">
+                <label className="block text-sm font-normal text-titleColor leading-4 mb-2">
                   Last name
                 </label>
                 <Input
@@ -77,25 +80,25 @@ const AdminProfile = () => {
                     handleInputChange("lastName", e.target.value)
                   }
                   disabled={!isEditing}
-                  className="bg-muted/50"
+                  className="bg-muted/50 text-textColor font-normal text-sm leading-4 uppercase"
                 />
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-semibold text-foreground mb-2">
+                <label className="block text-sm font-normal text-titleColor leading-4 mb-2">
                   E-mail
                 </label>
                 <Input
                   value={profile.email}
                   onChange={(e) => handleInputChange("email", e.target.value)}
                   disabled={!isEditing}
-                  className="bg-muted/50"
+                  className="bg-muted/50 text-textColor font-normal text-sm leading-4 uppercase"
                 />
               </div>
               <div>
-                <label className="block text-sm font-semibold text-foreground mb-2">
+                <label className="block text-sm font-normal text-titleColor leading-4 mb-2">
                   Emergency contact number
                 </label>
                 <div className="flex gap-2">
@@ -111,14 +114,14 @@ const AdminProfile = () => {
                       handleInputChange("emergencyPhone", e.target.value)
                     }
                     disabled={!isEditing}
-                    className="flex-1 bg-muted/50"
+                    className="flex-1 bg-muted/50 text-textColor font-normal text-sm leading-4 uppercase"
                   />
                 </div>
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-foreground mb-2">
+              <label className="block text-sm font-normal text-titleColor leading-4 mb-2">
                 Phone
               </label>
               <div className="flex gap-2">
@@ -132,28 +135,28 @@ const AdminProfile = () => {
                   value={profile.phone}
                   onChange={(e) => handleInputChange("phone", e.target.value)}
                   disabled={!isEditing}
-                  className="flex-1 bg-muted/50"
+                  className="flex-1 bg-muted/50 text-textColor font-normal text-sm leading-4 uppercase"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-foreground mb-2">
+              <label className="block text-sm font-normal text-titleColor leading-4 mb-2">
                 Location
               </label>
-              <div className="flex gap-2">
+              <div className="relative gap-2">
                 <Input
                   value={profile.location}
                   onChange={(e) =>
                     handleInputChange("location", e.target.value)
                   }
                   disabled={!isEditing}
-                  className="flex-1 bg-muted/50"
+                  className="flex-1 bg-muted/50 text-textColor font-normal text-sm leading-4 "
                 />
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="text-teal-600 hover:bg-teal-50"
+                  className="text-primaryColor hidden md:block hover:bg-teal-50 absolute top-0 right-0 cursor-pointer"
                 >
                   <MapPin className="w-5 h-5" />
                 </Button>
@@ -161,14 +164,17 @@ const AdminProfile = () => {
             </div>
           </div>
 
-          {isEditing && (
-            <Button
-              onClick={handleSave}
-              className="w-full mt-8 bg-teal-600 hover:bg-teal-700 text-white py-6 text-base font-semibold"
-            >
-              Save
-            </Button>
-          )}
+     {isEditing && (
+  <div className="flex justify-end mt-8">
+    <Button
+      onClick={handleSave}
+      className="w-full md:w-[316px] bg-teal-600 hover:bg-teal-700 text-white p-5 cursor-pointer text-base font-semibold"
+    >
+      Save
+    </Button>
+  </div>
+)}
+
         </div>
       </div>
     </div>
