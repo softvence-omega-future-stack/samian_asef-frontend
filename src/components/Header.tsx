@@ -8,8 +8,10 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
-import { Bell, Globe, LogOut, Search, Menu } from "lucide-react";
-import { useState, useEffect } from "react";
+import { Bell, LogOut, Search, Menu } from "lucide-react";
+import { useState,  } from "react";
+import { useNavigate } from "react-router-dom";
+import NotificationsModal from "./NotificationModal";
 
 interface HeaderProps {
   onMobileMenuOpen?: () => void;
@@ -27,50 +29,53 @@ const notifications = [
 const Header: React.FC<HeaderProps> = ({ 
   onMobileMenuOpen, 
   // isSidebarCollapsed, 
-  onSidebarToggle 
+  // onSidebarToggle 
 }) => {
-  const [openNotifications, setOpenNotifications] = useState(false);
-  const [language, setLanguage] = useState("EN");
+  // const [openNotifications, setOpenNotifications] = useState(false);
+  const [showNotificationModal, setShowNotificationModal] = useState(false);
+
+  const navigate = useNavigate()
+  // const [language, setLanguage] = useState("EN");
   const unreadCount = notifications.filter((n) => !n.read).length;
 
-  useEffect(() => {
-    if (openNotifications) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, [openNotifications]);
+  // useEffect(() => {
+  //   if (openNotifications) {
+  //     document.body.style.overflow = "hidden";
+  //   } else {
+  //     document.body.style.overflow = "unset";
+  //   }
+  //   return () => {
+  //     document.body.style.overflow = "unset";
+  //   };
+  // }, [openNotifications]);
 
   return (
     <header className="bg-white border-b border-border px-4 sm:px-6 py-4 flex items-center justify-between sticky top-0 z-30">
       
-      {/* ========== LEFT SECTION ========== */}
+      
       <div className="flex items-center gap-2">
         
-        {/* Mobile Menu Button (Only Mobile) */}
+      
         <Button
           variant="ghost"
           size="icon"
-          className="md:hidden"
+          className="md:hidden flex"
           onClick={onMobileMenuOpen}
         >
           <Menu className="w-5 h-5" />
         </Button>
 
-        {/* Desktop Toggle Button (Only Desktop) */}
-        <Button
+       
+        {/* <Button
           variant="ghost"
           size="icon"
           className="hidden md:flex"
           onClick={onSidebarToggle}
         >
           <Menu className="w-5 h-5" />
-        </Button>
+        </Button> */}
 
-        {/* Search Input */}
+        
         <div className="relative ml-2 flex-1 max-w-md">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
           <Input
@@ -80,11 +85,11 @@ const Header: React.FC<HeaderProps> = ({
         </div>
       </div>
 
-      {/* ========== RIGHT SECTION ========== */}
+     
       <div className="flex items-center gap-3 sm:gap-6 ml-auto">
         
-        {/* Language Selector */}
-        <DropdownMenu>
+       
+        {/* <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" size="sm" className="hidden sm:flex items-center gap-2">
               <Globe className="w-4 h-4" />
@@ -97,12 +102,12 @@ const Header: React.FC<HeaderProps> = ({
             <DropdownMenuItem onClick={() => setLanguage("FR")}>Français</DropdownMenuItem>
             <DropdownMenuItem onClick={() => setLanguage("DE")}>Deutsch</DropdownMenuItem>
           </DropdownMenuContent>
-        </DropdownMenu>
+        </DropdownMenu> */}
 
-        {/* Notifications */}
-        <DropdownMenu open={openNotifications} onOpenChange={setOpenNotifications}>
+    
+        {/* <DropdownMenu open={openNotifications} onOpenChange={setOpenNotifications}>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" size="icon" className="relative">
+            <Button  variant="ghost" size="icon" className="relative">
               <Bell className="w-5 h-5 text-gray-600" />
               {unreadCount > 0 && (
                 <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full flex items-center justify-center text-white text-xs">
@@ -139,12 +144,19 @@ const Header: React.FC<HeaderProps> = ({
               </Button>
             </div>
           </DropdownMenuContent>
-        </DropdownMenu>
-
-        {/* Profile */}
+        </DropdownMenu> */}
+ <Button   onClick={() => setShowNotificationModal(true)} variant="ghost" size="icon" className="relative cursor-pointer">
+              <Bell className="w-5 h-5 text-gray-600" />
+              {unreadCount > 0 && (
+                <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full flex items-center justify-center text-white text-xs">
+                  {unreadCount}
+                </span>
+              )}
+            </Button>
+     
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" size="icon" className="rounded-full">
+            <Button variant="ghost" size="icon" className="rounded-full cursor-pointer">
               <Avatar className="w-8 h-8">
                 <AvatarImage src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" />
                 <AvatarFallback>AD</AvatarFallback>
@@ -152,15 +164,20 @@ const Header: React.FC<HeaderProps> = ({
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuItem>Profile Settings</DropdownMenuItem>
+            <DropdownMenuItem onClick={()=> navigate('/dashboard/admin-profile')} className="cursor-pointer"> Profile Settings</DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="text-red-600">
+            <DropdownMenuItem className="text-red-600 cursor-pointer">
               <LogOut className="w-4 h-4 mr-2" />
               Logout
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
+      <NotificationsModal
+  isOpen={showNotificationModal}
+  onClose={() => setShowNotificationModal(false)}
+/>
+
     </header>
   );
 };

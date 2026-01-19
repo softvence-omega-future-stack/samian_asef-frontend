@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader,  } from "@/components/ui/card";
 import {  MoreVertical, Search, Trash2,  } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 
 const riders = [
@@ -76,13 +76,26 @@ const riders = [
   const [searchTerm, setSearchTerm] = useState("");
   const [openMenuId, setOpenMenuId] = useState<string | null>(null);
   const navigate = useNavigate()
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
 
+
+  useEffect(() => {
+  const handleClickOutside = (event: MouseEvent) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      setOpenMenuId(null); // close dropdown
+    }
+  };
+
+  document.addEventListener("mousedown", handleClickOutside);
+
+  return () => {
+    document.removeEventListener("mousedown", handleClickOutside);
+  };
+}, []);
 
   return (
-    <div className=" p-2 md:p-4 lg:p-8 space-y-6">
-      <div className="space-y-2">
-        
-      </div>
+    <div className=" bg-white rounded-2xl space-y-6">
+
 
       <Card>
         <CardHeader>
@@ -156,7 +169,7 @@ const riders = [
                     <td className="py-3 px-4 text-[#2C2F33] text-sm font-normal">{rider.address}</td>
                     <td className="py-3 px-4 text-[#2C2F33] text-sm font-normal">{rider.contact}</td>
                     <td className="py-3 px-4 text-[#2C2F33] text-sm font-normal">{rider.trips}</td>
-                    <td className="py-3 px-4 text-[#2C2F33] text-sm font-normal">
+                    <td className="py-3 px-4 text-[#2C2F33] text-sm font-normal relative">
                       <Button
                         variant="ghost"
                         size="sm"
@@ -169,7 +182,7 @@ const riders = [
                         <MoreVertical/>
                       </Button>
                              {openMenuId === rider.id && (
-    <div className="absolute right-40 mt-2 w-32 bg-white border rounded-lg shadow-lg z-50">
+    <div ref={dropdownRef} className="absolute right-30 mt-2 w-32 bg-white border rounded-lg shadow-lg z-50">
       <button
         onClick={() => {
      navigate(`/dashboard/riders/profile/${rider.id}`);

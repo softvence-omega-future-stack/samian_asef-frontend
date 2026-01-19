@@ -5,7 +5,7 @@ import { CgMenuRightAlt } from "react-icons/cg";
 import { cn } from "@/lib/utils";
 import {
   AlertCircle,
-  Bell,
+  
   DollarSign,
   History,
   Home,
@@ -31,7 +31,7 @@ const menuItems = [
   { id: "pricing", label: "Pricing Configuration", icon: DollarSign, path: "/dashboard/pricing-configuration" },
   { id: "transaction-history", label: "Transaction History", icon: History, path: "/dashboard/transaction-history" },
   { id: "complaints", label: "Complaints", icon: AlertCircle, path: "/dashboard/complains" },
-  { id: "notifications", label: "Notifications Management", icon: Bell, path: "/dashboard/notifications-management" },
+  // { id: "notifications", label: "Notifications Management", icon: Bell, path: "/dashboard/notifications-management" },
 ];
 
 const Sidebar: React.FC<SidebarProps> = ({ collapsed = false, onToggle, closeMobileMenu }) => {
@@ -44,10 +44,10 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed = false, onToggle, closeMob
       collapsed ? "w-20" : "w-64"
     )}>
       
-      {/* ========== HEADER ========== */}
+
       <div className="p-6 flex items-center justify-between border-b border-border md:border-b-0">
         
-        {/* Logo */}
+       
         <div
           className={cn(
             "flex items-center gap-2 cursor-pointer",
@@ -63,7 +63,7 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed = false, onToggle, closeMob
           )}
         </div>
 
-        {/* Desktop Collapse Button (Only when expanded) */}
+        
         {!collapsed && (
           <Button
             variant="ghost"
@@ -75,7 +75,7 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed = false, onToggle, closeMob
           </Button>
         )}
 
-        {/* Mobile Close Button */}
+        
         {closeMobileMenu && (
           <Button
             variant="ghost"
@@ -88,12 +88,17 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed = false, onToggle, closeMob
         )}
       </div>
 
-      {/* ========== MENU ITEMS ========== */}
+     
       <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
         {menuItems.map((item) => {
           const Icon = item.icon;
-          const isActive = location.pathname === item.path || 
-                          location.pathname.startsWith(item.path + "/");
+          const isActive =
+  item.path === "/dashboard"
+    ? location.pathname === "/dashboard"
+    : location.pathname.startsWith(item.path);
+
+          // const isActive = location.pathname === item.path || 
+          //                 location.pathname.startsWith(item.path + "/");
 
           return (
             <div

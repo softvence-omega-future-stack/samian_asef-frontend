@@ -12,6 +12,9 @@ import App from "../App";
 import Home from "../pages/Home";
 // import RiderDetails from "@/components/Riders/RiderDetails";
 import RiderProfile from "@/components/Riders/Riderprofile";
+import AdminProfile from "@/components/AdminProfile";
+import DriverProfile from "@/components/Drivers/DriverProfile";
+
 
 const routes = createBrowserRouter([
   {
@@ -32,10 +35,12 @@ const routes = createBrowserRouter([
  
 
           { path: "driver-management", element: <DriverManagement /> },
+          { path: "driver-management/profile/:id", element: <DriverProfile /> },
           { path: "trip-management", element: <TipManagement /> },
           { path: "pricing-configuration", element: <PricingConfiguration /> },
           { path: "transaction-history", element: <TransactionHistory /> },
           { path: "complains", element: <Complains /> },
+          { path: "admin-profile", element: <AdminProfile /> },
           {
             path: "notifications-management",
             element: <NotificationsManagement />,

@@ -160,7 +160,7 @@ const transactions = [
 
 const Dashboard = () => {
   return (
-    <div className="p-8 space-y-6">
+    <div className="space-y-6">
   
 
       {/* Stats Cards */}
@@ -358,10 +358,9 @@ const Dashboard = () => {
             </div>
           </CardHeader>
 
-       <CardContent className="flex items-end h-[400px]">
-  
+   <CardContent className="flex flex-col md:flex-row items-start md:items-end h-[400px] gap-6">
   {/* Left side: Description */}
-  <div className="w-1/4">
+  <div className="w-full md:w-1/4">
     <h2 className="text-titleColor text-lg sm:text-xl md:text-2xl font-semibold leading-6">
       $1224
     </h2>
@@ -370,59 +369,46 @@ const Dashboard = () => {
     </p>
   </div>
 
-  
-  <div className="w-3/4 h-full">
-<ResponsiveContainer width="100%" height={400}>
-  <BarChart data={ordersData} barCategoryGap="20%">
-    
-    {/* ✅ Gradient */}
-    <defs>
-      <linearGradient id="ordersGradient" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stopColor="#008080" stopOpacity={0.25} />
-        <stop offset="100%" stopColor="#008080" stopOpacity={1} />
-      </linearGradient>
-    </defs>
+  {/* Right side: Chart */}
+  <div className="w-full md:w-3/4 h-64 md:h-full">
+    <ResponsiveContainer width="100%" height="100%">
+      <BarChart data={ordersData} barCategoryGap="20%">
+        <defs>
+          <linearGradient id="ordersGradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#008080" stopOpacity={0.25} />
+            <stop offset="100%" stopColor="#008080" stopOpacity={1} />
+          </linearGradient>
+        </defs>
 
-    <CartesianGrid vertical={false} stroke="#E5ECF6" />
-
-    <XAxis
-      dataKey="day"
-      axisLine={false}
-      tickLine={false}
-      tick={{ fill: "#6B7280", fontSize: 12 }}
-    />
-
-    <YAxis
-      domain={[0, 100]}
-      ticks={[20, 40, 60, 80, 100]}
-      tickFormatter={(v) => `${v}%`}
-      axisLine={false}
-      tickLine={false}
-      tick={{ fill: "#6B7280", fontSize: 12 }}
-    />
-
-    <Tooltip formatter={(v) => `${v}%`} />
-
-    <Bar
-      dataKey="orders"
-      fill="url(#ordersGradient)"
-      radius={[6, 6, 0, 0]}
-      maxBarSize={32}
-    />
-  </BarChart>
-</ResponsiveContainer>
-
-
+        <CartesianGrid vertical={false} stroke="#E5ECF6" />
+        <XAxis
+          dataKey="day"
+          axisLine={false}
+          tickLine={false}
+          tick={{ fill: "#6B7280", fontSize: 12 }}
+        />
+        <YAxis
+          domain={[0, 100]}
+          ticks={[20, 40, 60, 80, 100]}
+          tickFormatter={(v) => `${v}%`}
+          axisLine={false}
+          tickLine={false}
+          tick={{ fill: "#6B7280", fontSize: 12 }}
+        />
+        <Tooltip formatter={(v) => `${v}%`} />
+        <Bar dataKey="orders" fill="url(#ordersGradient)" radius={[6, 6, 0, 0]} maxBarSize={32} />
+      </BarChart>
+    </ResponsiveContainer>
   </div>
-
 </CardContent>
+
 
 
         </Card>
       </div>
 
       {/* Three Column Section */}
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-1  md:grid-cols-2 xl:grid-cols-3 gap-6">
         {/* Top Driver */}
         <Card>
           <CardHeader>
@@ -497,7 +483,7 @@ const Dashboard = () => {
           </CardHeader>
           <CardContent className="space-y-3">
             {liveDriving.map((driver, index) => (
-              <div key={index} className="p-3 flex items-center justify-between w-full bg-gray-50 rounded-lg">
+              <div key={index} className="p-3 flex flex-col sm:flex-row md:flex-col lg:flex-row gap-3 items-center justify-between w-full bg-gray-50 rounded-lg">
                <div className= " flex items-center gap-2 shrink-0 w-[150px]">
                 <Avatar>
                   <AvatarImage src={driver.img} />

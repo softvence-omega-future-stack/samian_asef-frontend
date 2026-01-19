@@ -12,7 +12,7 @@ const DashboardLayout = () => {
   return (
     <div className="flex h-screen bg-[#F5F5F5] overflow-hidden">
       
-      {/* ========== DESKTOP SIDEBAR ========== */}
+    
       <div
         className={`hidden md:block transition-all duration-300 ${
           isSidebarCollapsed ? "w-20" : "w-64"
@@ -33,7 +33,7 @@ const DashboardLayout = () => {
         />
       )}
 
-      {/* ========== MOBILE SIDEBAR ========== */}
+   
       <div
         className={`fixed top-0 left-0 h-full bg-white z-50 md:hidden
         transition-transform duration-300 ${
@@ -48,7 +48,7 @@ const DashboardLayout = () => {
         />
       </div>
 
-      {/* ========== MAIN CONTENT ========== */}
+
       <div className="flex-1 flex flex-col min-h-screen w-full min-w-0">
         <Header
           onMobileMenuOpen={() => setIsMobileMenuOpen(true)}

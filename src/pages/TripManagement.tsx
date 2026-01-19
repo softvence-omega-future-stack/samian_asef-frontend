@@ -156,46 +156,58 @@ const TripManagement = () => {
   };
 
   return (
-    <div className="p-6 space-y-6">
-      <div className="flex items-center justify-between">
-      <div>
-        <h1 className="text-xl md:text-2xl  font-semibold text-titleColor leading-6 mb-6">
-          Trip Management
-        </h1>
-   
-      </div>
+    <div className=" bg-white rounded-2xl p-3 md:p-6 space-y-6">
+    <div className="flex flex-col md:flex-row w-full items-start md:items-center md:justify-between gap-4 md:gap-6">
+  
+  {/* Title */}
+  <div className="md:w-auto w-full">
+    <h1 className="text-xl md:text-2xl font-semibold text-titleColor leading-6">
+      Trip Management
+    </h1>
+  </div>
 
-      <div className="flex gap-4 items-center">
-        <div className="relative flex-1">
-          <Search className="absolute left-3 top-2 h-5 w-5 text-muted-foreground" />
-          <Input
-            placeholder="Search trips by driver, passenger, or trip ID..."
-            value={searchQuery}
-            onChange={(e) => handleSearch(e.target.value)}
-            className="pl-10 "
-          />
-        </div>
-        <Button variant="outline" className="border bg-transparent cursor-pointer">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M5 10H15M2.5 5H17.5M7.5 15H12.5" stroke="#2C2F33" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-          Filters
-        </Button>
-      </div>
-      </div>
+  {/* Search + Filter */}
+  <div className="flex flex-col md:flex-row w-full md:w-auto gap-4 items-center">
+    
+    <div className="relative w-full md:w-[320px]">
+      <Search className="absolute left-3 top-2 h-5 w-5 text-muted-foreground" />
+      <Input
+        placeholder="Search trips by driver, passenger, or trip ID..."
+        value={searchQuery}
+        onChange={(e) => handleSearch(e.target.value)}
+        className="pl-10"
+      />
+    </div>
+
+    <Button variant="outline" className="border w-full md:w-auto bg-transparent cursor-pointer">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <path
+          d="M5 10H15M2.5 5H17.5M7.5 15H12.5"
+          stroke="#2C2F33"
+          strokeWidth="1.66667"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+      Filters
+    </Button>
+
+  </div>
+</div>
+
 
       <div className="grid gap-4">
         {filteredTrips.map((trip) => (
           <Card
             key={trip.id}
-            className="border-0 bg-[#F5F5F5] p-4"
+            className="border-0 bg-[#F5F5F5] p-2 md:p-4 overflow-hidden"
           >
             <CardContent className="p-6">
            <div className="flex  flex-col md:flex-row w-full items-center justify-between">
               <div className="w-full md:w-3/4">
-               <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+               <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 ">
                 {/* Driver and Passenger Info */}
-                <div className="flex flex-col md:flex-row gap-4 space-y-4">
+                <div className="flex flex-1 gap-4 space-y-4">
                   <div className="space-y-2">
                  
                     <div className="flex items-center gap-3">
@@ -240,10 +252,12 @@ const TripManagement = () => {
                     </div>
                   </div>
                 </div>
-                 <div>
-                      <Badge className={` py-1 px-3 ${getStatusColor(trip.status)}`}>
-                        Trip {trip.status}
-                      </Badge>
+                 <div className="flex-1 justify-center md:justify-center flex">
+<Badge className={`block w-full md:w-auto py-1 px-3 md:mr-10 mb-2 md:mb-0 ${getStatusColor(trip.status)}`}>
+  Trip {trip.status}
+</Badge>
+
+
                  </div>
                 </div>
 
@@ -268,7 +282,7 @@ const TripManagement = () => {
         </div>
 
         {/* Drop */}
-        <div className="flex-1 md:text-right">
+        <div className="flex-1 ">
           <p className="text-sm text-textColor font-medium mb-2.5">30 mins (12.7km) trip</p>
           <h4 className="text-sm sm:text-base font-semibold text-titleColor">1901 Thornridge Cir. Shiloh, California</h4>
         </div>
@@ -292,10 +306,13 @@ const TripManagement = () => {
                     </div> */}
                   </div>
 
-                  <Button   onClick={() => handleViewClick(trip.id)} className=" bg-white border border-textColor text-textColor py-2.5 px-4 rounded-full hover:bg-gray-100 transition-colors cursor-pointer">
-                   
-                    View
-                  </Button>
+            <Button
+  onClick={() => handleViewClick(trip.id)}
+  className="bg-white border border-textColor w-full md:w-auto flex-shrink-0 text-textColor py-2.5 px-4 rounded-full hover:bg-gray-100 transition-colors cursor-pointer"
+>
+  View
+</Button>
+
                 </div>
            </div>
               
