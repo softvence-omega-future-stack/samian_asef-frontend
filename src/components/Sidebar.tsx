@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import {
   AlertCircle,
   
-  DollarSign,
+  // DollarSign,
   History,
   Home,
   MapPin,
@@ -28,7 +28,7 @@ const menuItems = [
   { id: "riders", label: "Riders", icon: Users, path: "/dashboard/riders" },
   { id: "driver-management", label: "Driver Management", icon: Truck, path: "/dashboard/driver-management" },
   { id: "trip-management", label: "Trip Management", icon: MapPin, path: "/dashboard/trip-management" },
-  { id: "pricing", label: "Pricing Configuration", icon: DollarSign, path: "/dashboard/pricing-configuration" },
+  // { id: "pricing", label: "Pricing Configuration", icon: DollarSign, path: "/dashboard/pricing-configuration" },
   { id: "transaction-history", label: "Transaction History", icon: History, path: "/dashboard/transaction-history" },
   { id: "complaints", label: "Complaints", icon: AlertCircle, path: "/dashboard/complains" },
   // { id: "notifications", label: "Notifications Management", icon: Bell, path: "/dashboard/notifications-management" },

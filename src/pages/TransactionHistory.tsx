@@ -118,6 +118,7 @@ const TransactionHistory = () => {
       t.trxId.toLowerCase().includes(searchQuery.toLowerCase()) ||
       t.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
+  
 
   const toggleRowSelection = (id: string) => {
     setSelectedRows((prev) =>
@@ -162,13 +163,21 @@ const TransactionHistory = () => {
   return (
     <div className="flex-1 overflow-auto bg-background rounded-[16px]">
       <div className=" p-2 md:p-6 rounded-[16px]">
-        <h1 className="text-xl md:text-2xl text-titleColor font-semibold leading-6 mb-4 md:mb-6">
-          Transactions
-        </h1>
+       
+  <div className="flex flex-col md:flex-row w-full items-start md:items-center md:justify-between gap-4 md:gap-6 mb-6">
+  
+  {/* Title */}
+  <div className="md:w-auto w-full">
+    <h1 className="text-xl md:text-2xl font-semibold text-titleColor leading-6">
+     Transactions
+    </h1>
+  </div>
 
-        <div className="flex flex-col md:flex-row gap-4 mb-6">
-          <div className="flex-1 relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
+  {/* Search + Filter */}
+  <div className="flex flex-col md:flex-row w-full md:w-auto gap-4 items-center">
+    
+    <div className="relative w-full md:w-[320px]">
+      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
             <Input
               placeholder="Search ..."
               className="pl-10"
@@ -176,13 +185,21 @@ const TransactionHistory = () => {
               onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
-          <Button variant="outline" className="gap-2 bg-transparent cursor-pointer">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M5 10H15M2.5 5H17.5M7.5 15H12.5" stroke="#2C2F33" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-            Filters
-          </Button>
-        </div>
+          <Button variant="outline" className="border w-full md:w-auto bg-transparent cursor-pointer">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <path
+          d="M5 10H15M2.5 5H17.5M7.5 15H12.5"
+          stroke="#2C2F33"
+          strokeWidth="1.66667"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+      Filters
+    </Button>
+
+  </div>
+</div>
 
         <div className="bg-card rounded-lg  overflow-x-auto overflow-y-auto">
           <table className="w-full">

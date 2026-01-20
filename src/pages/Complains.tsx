@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { useState } from "react";
 import ComplainModal from "./ComplainModal";
+// import DateRangePicker from "@/components/FIlteringDate";
 
 interface Complaint {
   id: string;
@@ -116,17 +117,18 @@ const Complains = () => {
 
   return (
     <div className="flex-1 overflow-auto bg-background rounded-[16px] ">
-      <div className="p-3 md:p-6">
+      <div className="p-3 md:p-6 ">
+        <div className="flex flex-col lg:flex-row items-center justify-between">
         <h1 className="text-xl md:text-2xl font-semibold text-titleColor leading-6 mb-6">
           Complaints submitted by riders or drivers
         </h1>
 
              <div className="flex flex-col md:flex-row gap-4 mb-6">
-          <div className="flex-1 relative">
+          <div className="flex-1 relative ">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
             <Input
               placeholder="Search ..."
-              className="pl-10"
+              className="pl-10 py-2"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -137,6 +139,10 @@ const Complains = () => {
 </svg>
             Filters
           </Button>
+          {/* <div className="w-full md:w-auto md:min-w-[250px]">
+  <DateRangePicker/>
+</div> */}
+        </div>
         </div>
 
         <div className="bg-card rounded-lg  overflow-x-auto overflow-y-auto">
