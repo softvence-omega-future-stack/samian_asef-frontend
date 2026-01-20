@@ -9,11 +9,17 @@ import TransactionHistory from "@/pages/TransactionHistory";
 import TipManagement from "@/pages/TripManagement";
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
-import Home from "../pages/Home";
+// import Home from "../pages/Home";
 // import RiderDetails from "@/components/Riders/RiderDetails";
 import RiderProfile from "@/components/Riders/Riderprofile";
 import AdminProfile from "@/components/AdminProfile";
 import DriverProfile from "@/components/Drivers/DriverProfile";
+import LoginPage from "@/components/Auth/LoginPage";
+import SignupPage from "@/components/Auth/SignUp";
+import ForgotPasswordPage from "@/components/Auth/ForgotPassword";
+import OTPPage from "@/components/Auth/OTPPage";
+import CreateNewPasswordPage from "@/components/Auth/CreateNewPassword";
+import SuccessFullPage from "@/components/Auth/Successfullpage";
 
 
 const routes = createBrowserRouter([
@@ -23,7 +29,31 @@ const routes = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home />,
+        element: <LoginPage />,
+      },
+      {
+        path: "/login",
+        element: <LoginPage />,
+      },
+      {
+        path: "/signup",
+        element: <SignupPage />,
+      },
+      {
+        path: "/forget_password",
+        element: <ForgotPasswordPage />,
+      },
+      {
+        path: "/otp",
+        element: <OTPPage />,
+      },
+      {
+        path: "/new_password",
+        element: <CreateNewPasswordPage />,
+      },
+      {
+        path: "/successfull",
+        element: <SuccessFullPage />,
       },
       {
         path: "dashboard",
@@ -31,7 +61,7 @@ const routes = createBrowserRouter([
         children: [
           { index: true, element: <Dashboard /> },
        { path: "riders", element: <Riders /> },
-{ path: "riders/profile/:id", element: <RiderProfile /> },
+       { path: "riders/profile/:id", element: <RiderProfile /> },
  
 
           { path: "driver-management", element: <DriverManagement /> },
