@@ -260,7 +260,7 @@ const Dashboard = () => {
           <CardHeader>
             <div className="flex items-center justify-between">
               <div className="">
-                <CardTitle title="Monthly Revenue"></CardTitle>
+                <h1 className="text-base sm:text-lg font- text-titleColor leading-6">Monthly Revenue</h1>
                 <CardDescription className="text-[#6B7280] mt-2">Last 7 days</CardDescription>
       
               </div>
@@ -334,7 +334,7 @@ const Dashboard = () => {
           <CardHeader>
             <div className="flex items-center justify-between">
               <div>
-                <CardTitle title="Orders Of This Month"></CardTitle>
+               <h1 className="text-base sm:text-lg font- text-titleColor leading-6">Orders Of This Month</h1>
               </div>
               <Button variant="ghost" size="sm" className="flex items-center gap-2 border border-[#E5ECF6] cursor-pointer">
       <svg
@@ -412,7 +412,7 @@ const Dashboard = () => {
         {/* Top Driver */}
         <Card>
           <CardHeader>
-            <CardTitle title="Top Driver"></CardTitle>
+          <h1 className="text-base sm:text-lg font- text-titleColor leading-6">Top Driver</h1>
           </CardHeader>
           <CardContent className="space-y-4">
             {topDrivers.map((driver) => (
@@ -453,7 +453,7 @@ const Dashboard = () => {
         {/* Ride Analytics */}
         <Card>
           <CardHeader>
-            <CardTitle title="Ride Analytics"></CardTitle>
+            <h1 className="text-base sm:text-lg font- text-titleColor leading-6">Ride Analytics</h1>
           </CardHeader>
           <CardContent className="space-y-3">
             {rideAnalytics.map((item, index) => (
@@ -479,7 +479,7 @@ const Dashboard = () => {
         {/* Live Driving */}
         <Card>
           <CardHeader>
-            <CardTitle title="Live Driving"></CardTitle>
+            <h1 className="text-base sm:text-lg font- text-titleColor leading-6">Live Driving</h1>
           </CardHeader>
           <CardContent className="space-y-3">
             {liveDriving.map((driver, index) => (
@@ -520,7 +520,7 @@ const Dashboard = () => {
       <Card>
         <CardHeader>
           <div className="flex items-center justify-between">
-            <CardTitle title="Transactions"></CardTitle>
+            <h1 className="text-base sm:text-lg font- text-titleColor leading-6">Transactions</h1>
             <Button variant="ghost" size="sm" className="border cursor-pointer">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
   <path d="M5 10H15M2.5 5H17.5M7.5 15H12.5" stroke="#2C2F33" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
